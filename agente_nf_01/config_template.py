@@ -1,0 +1,3 @@
+GOOGLE_API_KEY="API_GEN_KEY"
+LLM_MODEL="gemini-1.5-pro-latest"
+LLM_TEMPERATURE=0.7
