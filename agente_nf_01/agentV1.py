@@ -16,6 +16,7 @@ import config
 
 
 # --- 1. Definição de variaveis globais ---
+# Commentáro de teste
 DataFrameType = NewType('DataFrameType', pd.DataFrame)
 
 
