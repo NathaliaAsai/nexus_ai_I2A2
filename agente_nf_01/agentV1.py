@@ -12,8 +12,8 @@ import argparse
 from tabulate import tabulate
 import logging
 
+from xml_parser import parse_nfe_xml
 import config
-
 
 # --- 1. Definição de variaveis globais ---
 # Commentáro de teste
@@ -446,34 +446,49 @@ def _load_files_nf(files) -> Dict[str, DataFrameType]: # Use DataFrameType
 
 
 if __name__ == "__main__":
+    #configure_log("my_agent")
     configure_log("my_agent")
-    logger = logging.getLogger(__name__)
-    tabulateAgent = lambda x: tabulate(x, headers='keys', tablefmt='psql')
     
-    parser = argparse.ArgumentParser(description="AI Agent")
-    parser.add_argument("-f", "--files", nargs="+", help="Files to process", required=True)
+    #Caminho padrão da pasta onde estão os arquivos de notas fiscais
+    default_folder = "NotasFiscais"
+
+    logger.info("Starting agent application using default folder: NotasFiscais")
     
-    args = parser.parse_args()
-    
-    logger.info("Starting agent application.") # Usa o logger global
-    files = _parser_user_input(args.files)
+    #Carrega os arquivos de notas fiscais do diretório padrão
+    files = _parser_user_input([default_folder])
+
     if not files:
-        logger.error("Nenhum arquivo CSV válido foi encontrado para processar. Encerrando.")
+        logger.error("Nenhum arquivo válido foi encontrado para processar. Encerrando.")
         sys.exit(1)
 
     logger.info(f"Using files: {files}")
+   
+    # Verifica se há XMLs e carrega usando o parse_nfe_xml
+    xml_files = [f for f in files if f.lower().endswith(".xml")]
+    csv_files = [f for f in files if f.lower().endswith(".csv")]
+
+    if xml_files:
+        logger.info(f"Lendo arquivo XML: {xml_files[0]}")
+        header_df, items_df = parse_nfe_xml(xml_files[0])
+        data = {"header": header_df, "items": items_df}
+
+    elif csv_files:
+        data = _load_files_nf(csv_files)
+
+    else:
+        logger.error("Nenhum arquivo XML ou CSV válido encontrado.")
+        sys.exit(1)
     
     # --- Importação dos arquivos ---
-    data = _load_files_nf(files)
     logger.info("Data loaded successfully.")
     logger.info("Running statistics...")
     for key, df in data.items():
         logger.info(f"--- Statistics for {key} ---")
         logger.info(df.info(verbose=True, show_counts=True, buf=sys.stdout))
         logger.info("--- df.describe numeric ---")
-        logger.info("\n"+tabulateAgent(df.describe().transpose()))
+        logger.info("\n"+tabulate(df.describe().transpose(), headers='keys', tablefmt='psql'))
         logger.info("--- df.describe object ---")
-        logger.info("\n"+tabulateAgent(df.describe(include='object').transpose()))
+        logger.info("\n"+tabulate(df.describe(include='object').transpose(), headers='keys', tablefmt='psql'))
         
     # Criar a instância do Agent
     agent_instance = AgentAI()
