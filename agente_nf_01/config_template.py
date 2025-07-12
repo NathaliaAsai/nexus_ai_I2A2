@@ -1,3 +1,8 @@
-GOOGLE_API_KEY="API_GEN_KEY"
-LLM_MODEL="gemini-1.5-pro-latest"
-LLM_TEMPERATURE=0.7
+from dotenv import load_dotenv
+import os
+
+class Config:
+    def __init__(self):
+        load_dotenv(dotenv_path=".envapi")  
+        self.GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+        self.LLM_MODEL = os.getenv("LLM_MODEL")

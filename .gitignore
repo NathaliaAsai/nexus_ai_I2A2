@@ -6,3 +6,5 @@ __pycache__
 .env
 requirements.txt
 NotasFiscais/
+.envapi
+agentV1.py
