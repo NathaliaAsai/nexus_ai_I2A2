@@ -10,7 +10,7 @@ charset-normalizer==3.4.2
 dataclasses-json==0.6.7
 filetype==1.2.0
 frozenlist==1.6.0
-# google-ai-generativelanguage==0.6.18 - nao compativel com a nova versao do google generative ai
+google-ai-generativelanguage==0.4.0 #ultima v nao compativel com a nova versao do google generative ai
 google-api-core==2.24.2
 google-auth==2.40.2
 google-generativeai==0.4.1
@@ -34,7 +34,7 @@ langsmith==0.1.147
 marshmallow==3.26.1
 multidict==6.4.4
 mypy_extensions==1.1.0
-numpy==1.26.4
+numpy==1.25.2 #incompatibilidade com a nova versao do google generative ai
 packaging==23.2
 pandas==2.2.3
 propcache==0.3.1
