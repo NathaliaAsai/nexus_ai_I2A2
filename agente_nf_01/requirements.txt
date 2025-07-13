@@ -10,7 +10,7 @@ charset-normalizer==3.4.2
 dataclasses-json==0.6.7
 filetype==1.2.0
 frozenlist==1.6.0
-google-ai-generativelanguage==0.6.18
+# google-ai-generativelanguage==0.6.18 - nao compativel com a nova versao do google generative ai
 google-api-core==2.24.2
 google-auth==2.40.2
 google-generativeai==0.4.1
