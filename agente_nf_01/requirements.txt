@@ -34,7 +34,7 @@ langsmith==0.1.147
 marshmallow==3.26.1
 multidict==6.4.4
 mypy_extensions==1.1.0
-numpy==1.26.2 #incompatibilidade com a nova versao do google generative ai
+numpy #incompatibilidade com a nova versao do google generative ai
 packaging==24.1 #v 25.0 incompativel com marshmellow e langchain-core
 pandas==2.2.3
 propcache==0.3.1
