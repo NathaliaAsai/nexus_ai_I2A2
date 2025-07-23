@@ -9,11 +9,11 @@ certifi==2025.4.26
 charset-normalizer==3.4.2
 dataclasses-json==0.6.7
 filetype==1.2.0
-frozenlist==1.6.0
-google-ai-generativelanguage==0.4.0 #ultima v nao compativel com a nova versao do google generative ai
+frozenlist==1.4.1
+google-ai-generativelanguage #v conflitante
 google-api-core==2.24.2
 google-auth==2.40.2
-google-generativeai==0.4.1
+google-generativeai #v conflitante
 googleapis-common-protos==1.70.0
 greenlet==3.2.2
 grpcio==1.71.0
@@ -28,14 +28,14 @@ jsonpointer==3.0.0
 langchain==0.3.25
 langchain-community==0.3.24
 langchain-core==0.3.63
-langchain-google-genai==2.1.5
+langchain-google-genai #v conflitante
 langchain-text-splitters==0.3.8
 langsmith==0.1.147
 marshmallow==3.26.1
 multidict==6.4.4
 mypy_extensions==1.1.0
-numpy==1.25.2 #incompatibilidade com a nova versao do google generative ai
-packaging==23.2
+numpy==1.26.2 #incompatibilidade com a nova versao do google generative ai
+packaging==24.1 #v 25.0 incompativel com marshmellow e langchain-core
 pandas==2.2.3
 propcache==0.3.1
 proto-plus==1.26.1
@@ -52,7 +52,7 @@ PyYAML==6.0.2
 requests==2.32.3
 requests-toolbelt==1.0.0
 rsa==4.9.1
-six==1.17.0
+six==1.16.0
 sniffio==1.3.1
 tabulate==0.9.0
 tenacity==8.5.0
@@ -65,3 +65,6 @@ yarl==1.20.0
 streamlit==1.46.1
 PyPDF2==3.0.1
 faiss-cpu==1.11.0
+pip==25.1.1
+pipdeptree==2.28.0
+setuptools==65.5.0
